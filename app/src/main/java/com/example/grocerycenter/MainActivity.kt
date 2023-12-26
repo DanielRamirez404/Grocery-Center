@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.grocerycenter.data.productList
 import com.example.grocerycenter.ui.theme.GroceryCenterTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
       GroceryCenterTheme {
         // A surface container using the 'background' color from the theme
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          Greeting("Android")
+          App()
         }
       }
     }
@@ -27,17 +28,8 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun App(modifier: Modifier = Modifier) {
   Text(
-    text = "Hello $name!",
-    modifier = modifier
+    text = productList[0].name + " " + productList[0].brand
   )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-  GroceryCenterTheme {
-    Greeting("Android")
-  }
 }
