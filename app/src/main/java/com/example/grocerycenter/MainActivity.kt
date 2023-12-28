@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.example.grocerycenter.ui.App
 import com.example.grocerycenter.ui.screens.HomeScreen
 import com.example.grocerycenter.ui.theme.GroceryCenterTheme
 
@@ -16,7 +17,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       GroceryCenterTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          HomeScreen()
+          App()
         }
       }
     }
