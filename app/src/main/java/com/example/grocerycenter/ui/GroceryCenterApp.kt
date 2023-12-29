@@ -8,11 +8,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -28,7 +30,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.grocerycenter.R
 import com.example.grocerycenter.ui.state.AppViewModel
-import com.example.grocerycenter.ui.reusablecomposables.TopBar
 import com.example.grocerycenter.ui.screens.CompareScreen
 import com.example.grocerycenter.ui.screens.HomeScreen
 import com.example.grocerycenter.ui.screens.OffersScreen
@@ -69,7 +70,7 @@ fun App(
     val uiState by viewModel.uiState.collectAsState()
     NavHost(
       navController = navController,
-      startDestination = Screens.Compare.name,
+      startDestination = Screens.Home.name,
       modifier = modifier.padding(it)
     ) {
       composable(route = Screens.Compare.name) {
@@ -157,4 +158,15 @@ fun BottomBarItem(
       Icon(painter = painterResource(id = icon), contentDescription = text)
     }
   }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar(name: String, modifier: Modifier = Modifier) {
+  CenterAlignedTopAppBar(
+    modifier = modifier,
+    title = {
+      Text(text = "Grocery Center")
+    }
+  )
 }

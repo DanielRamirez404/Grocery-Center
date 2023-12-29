@@ -5,7 +5,7 @@ data class Product(
   val brand: String,
   val supermarket: Supermarket,
   val price: Float,
-  val extraInfo: String? = null,
+  val extraInfo: String,
   val hasOffer: Boolean = false,
   val discount: Int = 0,
 )
