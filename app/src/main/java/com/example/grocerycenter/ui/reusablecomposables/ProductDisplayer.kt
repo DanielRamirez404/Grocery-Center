@@ -26,6 +26,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.grocerycenter.data.MarketToDrawable
@@ -49,7 +50,6 @@ fun ProductDisplayer(
   ) {
     Column(
       modifier = modifier
-        .padding(Padding.medium, Padding.none)
         .width(width)
         .shadow(elevation = 3.dp)
     ) {
@@ -77,10 +77,23 @@ fun ProductDisplayer(
         modifier = modifier
           .fillMaxWidth()
           .background(color = MaterialTheme.colorScheme.background)
+          .padding(Padding.small)
       ) {
-        Text(text = product.name)
-        Text(text = product.brand)
-        Text(text = "$ " + product.price.toString())
+        Text(
+          text = product.name,
+          style = MaterialTheme.typography.titleMedium
+        )
+        Text(
+          text = product.brand,
+          style = MaterialTheme.typography.bodySmall,
+          color = MaterialTheme.colorScheme.outline
+        )
+        Text(
+          text = "$ " + product.price.toString(),
+          style = MaterialTheme.typography.bodyLarge,
+          color = MaterialTheme.colorScheme.inversePrimary,
+          fontWeight = FontWeight.Bold
+        )
       }
     }
   }
