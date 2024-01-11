@@ -1,13 +1,19 @@
 package com.example.grocerycenter.ui.reusablecomposables
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
@@ -21,35 +27,61 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.grocerycenter.data.MarketToDrawable
 import com.example.grocerycenter.data.Product
+import com.example.grocerycenter.ui.state.AppViewModel
 import com.example.grocerycenter.ui.theme.Padding
 
 @Composable
-fun ProductDisplayer(product: Product, modifier: Modifier = Modifier) {
+fun ProductDisplayer(
+  product: Product,
+  viewModel: AppViewModel,
+  modifier: Modifier = Modifier,
+  navigateToProduct: () -> Unit
+) {
   val width = 175.dp
-  Column(
-    modifier = modifier
-      .padding(Padding.medium, Padding.none)
-      .width(width)
-      .shadow(elevation = 3.dp)
-
+  Box(
+    Modifier.clickable {
+      viewModel.selectProduct(product)
+      navigateToProduct()
+    }
   ) {
-    Image(
-      painter = painterResource(product.image),
-      contentDescription = product.name,
-      contentScale = ContentScale.FillWidth,
-      modifier = modifier
-        .height(width)
-
-    )
     Column(
       modifier = modifier
-        .fillMaxWidth()
-        .background(color = MaterialTheme.colorScheme.background)
+        .padding(Padding.medium, Padding.none)
+        .width(width)
+        .shadow(elevation = 3.dp)
     ) {
-      Text(text = product.name)
-      Text(text = product.brand)
-      Text(text = "$ " + product.price.toString())
+      Spacer(
+        modifier = modifier
+          .height(1.5.dp)
+      )
+      Image(
+        painter = painterResource(id = MarketToDrawable(product.supermarket)),
+        contentDescription = null,
+        modifier = Modifier
+          .fillMaxWidth()
+          .height(30.dp)
+          .align(Alignment.CenterHorizontally)
+          .background(color = MaterialTheme.colorScheme.background)
+      )
+      Image(
+        painter = painterResource(product.image),
+        contentDescription = product.name,
+        contentScale = ContentScale.FillWidth,
+        modifier = modifier
+          .height(width)
+      )
+      Column(
+        modifier = modifier
+          .fillMaxWidth()
+          .background(color = MaterialTheme.colorScheme.background)
+      ) {
+        Text(text = product.name)
+        Text(text = product.brand)
+        Text(text = "$ " + product.price.toString())
+      }
     }
   }
 }

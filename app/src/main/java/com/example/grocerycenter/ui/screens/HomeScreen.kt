@@ -14,10 +14,15 @@ import androidx.compose.ui.Modifier
 import com.example.grocerycenter.data.Product
 import com.example.grocerycenter.data.productList
 import com.example.grocerycenter.ui.reusablecomposables.ProductDisplayer
+import com.example.grocerycenter.ui.state.AppViewModel
 import com.example.grocerycenter.ui.theme.Padding
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+  viewModel: AppViewModel,
+  navigateToProduct: () -> Unit,
+  modifier: Modifier = Modifier
+) {
   val popularProducts = listOf<Product>(
     productList[0],
     productList[1],
@@ -30,7 +35,11 @@ fun HomeScreen(modifier: Modifier = Modifier) {
       .padding(Padding.medium, Padding.none)
   ) {
     items(popularProducts) {product ->
-      ProductDisplayer(product)
+      ProductDisplayer(
+        product = product,
+        navigateToProduct = navigateToProduct,
+        viewModel = viewModel
+      )
     }
   }
 }

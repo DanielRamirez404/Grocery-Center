@@ -29,6 +29,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.grocerycenter.R
+import com.example.grocerycenter.data.Product
 import com.example.grocerycenter.ui.state.AppViewModel
 import com.example.grocerycenter.ui.screens.CompareScreen
 import com.example.grocerycenter.ui.screens.HomeScreen
@@ -77,7 +78,12 @@ fun App(
         CompareScreen()
       }
       composable(route = Screens.Home.name) {
-        HomeScreen()
+        HomeScreen(
+          navigateToProduct = {
+            navController.navigate(Screens.Products.name)
+          },
+          viewModel = viewModel
+        )
       }
       composable(route = Screens.Offers.name) {
         OffersScreen()
@@ -88,8 +94,10 @@ fun App(
       composable(route = Screens.Options.name) {
         OptionsScreen()
       }
-      composable(route = Screens.Products.name) {
-        ProductScreen()
+      composable(
+        route = Screens.Products.name,
+      ) {
+        ProductScreen(viewModel = viewModel)
       }
     }
   }
