@@ -27,10 +27,13 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.grocerycenter.data.MarketToDrawable
 import com.example.grocerycenter.data.Product
+import com.example.grocerycenter.data.Supermarket
+import com.example.grocerycenter.data.productList
 import com.example.grocerycenter.ui.state.AppViewModel
 import com.example.grocerycenter.ui.theme.Padding
 
@@ -72,6 +75,7 @@ fun ProductDisplayer(
         contentScale = ContentScale.FillWidth,
         modifier = modifier
           .height(width)
+          .fillMaxWidth()
       )
       Column(
         modifier = modifier
@@ -88,13 +92,51 @@ fun ProductDisplayer(
           style = MaterialTheme.typography.bodySmall,
           color = MaterialTheme.colorScheme.outline
         )
-        Text(
-          text = "$ " + product.price.toString(),
-          style = MaterialTheme.typography.bodyLarge,
-          color = MaterialTheme.colorScheme.inversePrimary,
-          fontWeight = FontWeight.Bold
-        )
+        Row(
+          horizontalArrangement = Arrangement.SpaceBetween,
+          verticalAlignment = Alignment.CenterVertically,
+          modifier = modifier
+            .fillMaxWidth()
+        ) {
+          Text(
+            text = "$ " + product.price.toString(),
+            style = if (product.hasOffer) MaterialTheme.typography.bodySmall else MaterialTheme.typography.bodyLarge,
+            color = if (product.hasOffer) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.inversePrimary,
+            fontWeight = FontWeight.Bold,
+            textDecoration = if (product.hasOffer) TextDecoration.LineThrough else TextDecoration.None,
+          )
+          if (product.hasOffer) {
+            Text(
+              text = "$ " + product.discountedPrice.toString(),
+              style = MaterialTheme.typography.bodyLarge,
+              color = MaterialTheme.colorScheme.inversePrimary,
+              fontWeight = FontWeight.Bold,
+            )
+          }
+        }
+
       }
     }
   }
+}
+
+fun getRandomProductList() : List<Product> {
+  val listSize = 3
+  return productList.asSequence().shuffled().take(listSize).toList()
+}
+
+fun getProductListFrom(supermarket: Supermarket) : List<Product> {
+  val listSize = 3
+  val copiedList = productList.map{ it.copy() }
+  val list = copiedList.toMutableList()
+  list.removeIf { it.supermarket != supermarket }
+  return list.asSequence().shuffled().take(listSize).toList()
+}
+
+fun getRandomOffers() : List<Product> {
+  val listSize = 3
+  val copiedList = productList.map{ it.copy() }
+  val list = copiedList.toMutableList()
+  list.removeIf { !it.hasOffer }
+  return list.asSequence().shuffled().take(listSize).toList()
 }

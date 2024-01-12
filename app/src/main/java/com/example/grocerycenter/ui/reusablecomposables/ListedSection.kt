@@ -33,6 +33,7 @@ fun ListedSection(
       contentPadding = PaddingValues(myPadding, Padding.none),
       modifier = modifier
         .fillMaxWidth()
+        .padding(Padding.none, Padding.none, Padding.none, Padding.medium)
     ) {
       items(list) {product ->
         ProductDisplayer(

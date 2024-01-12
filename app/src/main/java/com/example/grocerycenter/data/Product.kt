@@ -7,5 +7,5 @@ data class Product(
   val price: Float,
   val extraInfo: String,
   val hasOffer: Boolean = false,
-  val discount: Int = 0,
+  val discountedPrice: Float = 0.0f,
 )
