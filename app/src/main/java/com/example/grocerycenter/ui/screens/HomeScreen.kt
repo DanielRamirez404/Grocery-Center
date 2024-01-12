@@ -74,7 +74,7 @@ fun HomeScreen(
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
-      title = "Popular Offers",
+      title = "Special Offers",
       list = getRandomOffers(),
       modifier = modifier
     )

@@ -114,7 +114,6 @@ fun ProductDisplayer(
             )
           }
         }
-
       }
     }
   }
@@ -138,5 +137,13 @@ fun getRandomOffers() : List<Product> {
   val copiedList = productList.map{ it.copy() }
   val list = copiedList.toMutableList()
   list.removeIf { !it.hasOffer }
+  return list.asSequence().shuffled().take(listSize).toList()
+}
+
+fun getRandomOffersFrom(supermarket: Supermarket) : List<Product> {
+  val listSize = 3
+  val copiedList = productList.map{ it.copy() }
+  val list = copiedList.toMutableList()
+  list.removeIf { !it.hasOffer || it.supermarket != supermarket }
   return list.asSequence().shuffled().take(listSize).toList()
 }

@@ -51,7 +51,7 @@ val productList = listOf(
     name = "Refresco Frescolita",
     image = R.drawable.frescolita,
     brand = "Coca-Cola",
-    supermarket = Supermarket.MasPorMenos,
+    supermarket = Supermarket.Aikoz,
     extraInfo = "2l",
     price = 2.13f
   ),
@@ -59,7 +59,7 @@ val productList = listOf(
     name = "Jamón Endiablado",
     image = R.drawable.jam_n_endiablado_plumrose,
     brand = "Plumrose",
-    supermarket = Supermarket.Aikoz,
+    supermarket = Supermarket.MasPorMenos,
     extraInfo = "110g",
     price = 2.41f,
     hasOffer = true,
@@ -103,6 +103,90 @@ val productList = listOf(
     brand = "Pantene",
     supermarket = Supermarket.MasPorMenos,
     extraInfo = "600ml",
-    price = 2.6f
+    price = 2.59f
+  ),
+  Product(
+    name = "Cheese Tris",
+    image = R.drawable.chesee_tris,
+    brand = "Frito Lay",
+    supermarket = Supermarket.MasPorMenos,
+    extraInfo = "150g",
+    price = 4.24f,
+    hasOffer = true,
+    discountedPrice = 3.85f
+  ),
+  Product(
+    name = "Colonia Para Niños",
+    image = R.drawable.colonia_melody,
+    brand = "Melody",
+    supermarket = Supermarket.MasPorMenos,
+    extraInfo = "200ml",
+    price = 3.15f,
+    hasOffer = true,
+    discountedPrice = 2.55f
+  ),
+  Product(
+    name = "Cereal Corn Flakes",
+    image = R.drawable.corn_flakes,
+    brand = "Kellogg's",
+    supermarket = Supermarket.MasPorMenos,
+    extraInfo = "230g",
+    price = 4.99f
+  ),
+  Product(
+    name = "Detergente",
+    image = R.drawable.detergente_ace,
+    brand = "Ace",
+    supermarket = Supermarket.Aikoz,
+    extraInfo = "400g",
+    price = 4.33f,
+    hasOffer = true,
+    discountedPrice = 3.33f
+  ),
+  Product(
+    name = "Doritos",
+    image = R.drawable.doritos,
+    brand = "Doritos",
+    supermarket = Supermarket.Aikoz,
+    extraInfo = "9.25oz",
+    price = 4.69f,
+    hasOffer = true,
+    discountedPrice = 3.96f
+  ),
+  Product(
+    name = "Gel Fijador",
+    image = R.drawable.gel_fijador_rolda,
+    brand = "Rolda",
+    supermarket = Supermarket.Aikoz,
+    extraInfo = "250g",
+    price = 3.5f
+  ),
+  Product(
+    name = "Jabón",
+    image = R.drawable.jab_n_las_llaves,
+    brand = "Las Llaves",
+    supermarket = Supermarket.Rio,
+    extraInfo = "250g",
+    price = 4.86f,
+    hasOffer = true,
+    discountedPrice = 4.22f
+  ),
+  Product(
+    name = "Lavaplatos Líquido",
+    image = R.drawable.lavaplatos_axion,
+    brand = "Axion",
+    supermarket = Supermarket.Rio,
+    extraInfo = "750ml",
+    price = 3.8f,
+    hasOffer = true,
+    discountedPrice = 2.99f
+  ),
+  Product(
+    name = "Pepito",
+    image = R.drawable.pepito,
+    brand = "Frito Lay",
+    supermarket = Supermarket.Rio,
+    extraInfo = "80g",
+    price = 4.95f
   ),
 )
