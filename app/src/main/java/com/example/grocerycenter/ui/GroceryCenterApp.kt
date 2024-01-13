@@ -75,7 +75,10 @@ fun App(
       modifier = modifier.padding(it)
     ) {
       composable(route = Screens.Compare.name) {
-        CompareScreen()
+        CompareScreen(navigateToProduct = {
+          navController.navigate(Screens.Products.name)
+        },
+          viewModel = viewModel)
       }
       composable(route = Screens.Home.name) {
         HomeScreen(
@@ -89,6 +92,7 @@ fun App(
         OffersScreen(
           navigateToProduct = {
             navController.navigate(Screens.Products.name)
+
           },
           viewModel = viewModel
         )

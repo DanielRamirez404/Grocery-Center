@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,9 +17,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -30,6 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.grocerycenter.R
 import com.example.grocerycenter.data.MarketToDrawable
 import com.example.grocerycenter.data.Product
 import com.example.grocerycenter.data.Supermarket
@@ -51,6 +59,7 @@ fun ProductDisplayer(
       navigateToProduct()
     }
   ) {
+    val uiState by viewModel.uiState.collectAsState()
     Column(
       modifier = modifier
         .width(width)
@@ -98,19 +107,41 @@ fun ProductDisplayer(
           modifier = modifier
             .fillMaxWidth()
         ) {
-          Text(
-            text = "$ " + product.price.toString(),
-            style = if (product.hasOffer) MaterialTheme.typography.bodySmall else MaterialTheme.typography.bodyLarge,
-            color = if (product.hasOffer) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.inversePrimary,
-            fontWeight = FontWeight.Bold,
-            textDecoration = if (product.hasOffer) TextDecoration.LineThrough else TextDecoration.None,
-          )
-          if (product.hasOffer) {
+          Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
             Text(
-              text = "$ " + product.discountedPrice.toString(),
-              style = MaterialTheme.typography.bodyLarge,
-              color = MaterialTheme.colorScheme.inversePrimary,
+              text = "$" + product.price.toString(),
+              style = if (product.hasOffer) MaterialTheme.typography.bodySmall else MaterialTheme.typography.bodyLarge,
+              color = if (product.hasOffer) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.inversePrimary,
               fontWeight = FontWeight.Bold,
+              textDecoration = if (product.hasOffer) TextDecoration.LineThrough else TextDecoration.None,
+            )
+            if (product.hasOffer) {
+              Text(
+                text = " $" + product.discountedPrice.toString(),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.inversePrimary,
+                fontWeight = FontWeight.Bold,
+              )
+            }
+          }
+          Button(
+            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary),
+            shape = RoundedCornerShape(35),
+            contentPadding = PaddingValues(0.dp),
+            onClick = {
+              if (!uiState.compareList.contains(product)) {
+                viewModel.addProductToCompare(product)
+              }
+            },
+            modifier = modifier
+              .padding(Padding.none)
+              .height(30.dp)
+              .width(50.dp)
+          ) {
+            Icon(
+              painter = painterResource(id = R.drawable.plus_solid),
+              contentDescription = null,
+              modifier = modifier
             )
           }
         }
