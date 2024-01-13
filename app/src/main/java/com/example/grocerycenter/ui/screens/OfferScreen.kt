@@ -5,6 +5,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.example.grocerycenter.data.Supermarket
 import com.example.grocerycenter.ui.reusablecomposables.ListedSection
@@ -22,32 +24,33 @@ fun OffersScreen(
     modifier = modifier
       .verticalScroll(rememberScrollState())
   ) {
+    val uiState by viewModel.uiState.collectAsState()
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
       title = "Special Offers",
-      list = getRandomOffers(),
+      list = uiState.popularOffers,
       modifier = modifier
     )
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
       title = "Offers in Más Por Menos",
-      list = getRandomOffersFrom(Supermarket.MasPorMenos),
+      list = uiState.offersMap.getValue(Supermarket.MasPorMenos),
       modifier = modifier
     )
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
       title = "Offers in Aikoz",
-      list = getRandomOffersFrom(Supermarket.Aikoz),
+      list = uiState.offersMap.getValue(Supermarket.Aikoz),
       modifier = modifier
     )
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
       title = "Offers in Rio",
-      list = getRandomOffersFrom(Supermarket.Rio),
+      list = uiState.offersMap.getValue(Supermarket.Rio),
       modifier = modifier
     )
   }

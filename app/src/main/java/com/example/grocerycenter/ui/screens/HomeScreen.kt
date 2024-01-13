@@ -18,6 +18,8 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,39 +45,40 @@ fun HomeScreen(
     modifier = modifier
       .verticalScroll(rememberScrollState())
   ) {
+    val uiState by viewModel.uiState.collectAsState()
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
       title = "Popular Products",
-      list = getRandomProductList(),
+      list = uiState.popularProducts,
       modifier = modifier
     )
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
       title = "Popular in Más Por Menos",
-      list = getProductListFrom(Supermarket.MasPorMenos),
+      list = uiState.popularMap.getValue(Supermarket.MasPorMenos),
       modifier = modifier
     )
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
       title = "Popular in Aikoz",
-      list = getProductListFrom(Supermarket.Aikoz),
+      list = uiState.popularMap.getValue(Supermarket.Aikoz),
       modifier = modifier
     )
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
       title = "Popular in Rio",
-      list = getProductListFrom(Supermarket.Rio),
+      list = uiState.popularMap.getValue(Supermarket.Rio),
       modifier = modifier
     )
     ListedSection(
       viewModel = viewModel,
       navigateToProduct = navigateToProduct,
       title = "Special Offers",
-      list = getRandomOffers(),
+      list = uiState.popularOffers,
       modifier = modifier
     )
   }
