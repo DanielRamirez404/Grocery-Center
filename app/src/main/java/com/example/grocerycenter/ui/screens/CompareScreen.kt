@@ -18,14 +18,13 @@ fun CompareScreen(
   navigateToProduct: () -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val uiState by viewModel.uiState.collectAsState()
-  if (uiState.compareList.size == 0) {
+  if (viewModel.compareList.size == 0) {
     Text(text = "No items yet to compare")
   }
   LazyColumn(
     modifier = modifier
   ) {
-    items(uiState.compareList) {
+    items(viewModel.compareList) {
       LongProductDisplayer(
         product = it,
         viewModel = viewModel,

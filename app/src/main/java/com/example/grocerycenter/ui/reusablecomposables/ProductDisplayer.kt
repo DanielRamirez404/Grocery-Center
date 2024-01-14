@@ -129,7 +129,7 @@ fun ProductDisplayer(
             shape = RoundedCornerShape(35),
             contentPadding = PaddingValues(0.dp),
             onClick = {
-              if (!uiState.compareList.contains(product)) {
+              if (!viewModel.compareList.contains(product)) {
                 viewModel.addProductToCompare(product)
               }
             },
