@@ -15,3 +15,11 @@ fun MarketToDrawable(supermarket: Supermarket) : Int {
     else -> R.drawable.rio_supermarket_logo
   }
 }
+
+fun MarketToString(supermarket: Supermarket) : String {
+ return when(supermarket) {
+   Supermarket.MasPorMenos -> "Más Por Menos"
+   Supermarket.Aikoz -> "Aikoz"
+   else -> "Río"
+ }
+}

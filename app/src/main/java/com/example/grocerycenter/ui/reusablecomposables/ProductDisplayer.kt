@@ -108,6 +108,14 @@ fun ProductDisplayer(
             .fillMaxWidth()
         ) {
           Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
+            if (product.hasOffer) {
+              Text(
+                text = "$" + product.discountedPrice.toString() + " ",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.inversePrimary,
+                fontWeight = FontWeight.Bold,
+              )
+            }
             Text(
               text = "$" + product.price.toString(),
               style = if (product.hasOffer) MaterialTheme.typography.bodySmall else MaterialTheme.typography.bodyLarge,
@@ -115,14 +123,6 @@ fun ProductDisplayer(
               fontWeight = FontWeight.Bold,
               textDecoration = if (product.hasOffer) TextDecoration.LineThrough else TextDecoration.None,
             )
-            if (product.hasOffer) {
-              Text(
-                text = " $" + product.discountedPrice.toString(),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.inversePrimary,
-                fontWeight = FontWeight.Bold,
-              )
-            }
           }
           Button(
             colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary),
