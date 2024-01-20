@@ -47,6 +47,7 @@ fun LongProductDisplayer(
   viewModel: AppViewModel,
   navigateToProduct: () -> Unit,
   modifier: Modifier = Modifier,
+  hasDeleteButton: Boolean = false
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
@@ -120,11 +121,11 @@ fun LongProductDisplayer(
           )
         }
         Button(
-          colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.error),
+          colors = if (hasDeleteButton) ButtonDefaults.buttonColors(MaterialTheme.colorScheme.error) else ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary),
           shape = RoundedCornerShape(35),
           contentPadding = PaddingValues(0.dp),
           onClick = {
-            viewModel.removeProductToCompare(product)
+            if (hasDeleteButton) viewModel.removeProductToCompare(product) else viewModel.addProductToCompare(product)
           },
           modifier = modifier
             .padding(Padding.none, Padding.large, Padding.large, Padding.none)
@@ -132,7 +133,7 @@ fun LongProductDisplayer(
             .width(50.dp)
         ) {
           Icon(
-            painter = painterResource(id = R.drawable.minus_solid),
+            painter = if (hasDeleteButton) painterResource(id = R.drawable.minus_solid) else painterResource(id = R.drawable.plus_solid),
             contentDescription = null,
             modifier = modifier
           )

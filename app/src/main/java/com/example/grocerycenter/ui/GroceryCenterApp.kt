@@ -98,7 +98,11 @@ fun App(
         )
       }
       composable(route = Screens.Search.name) {
-        SearchScreen()
+        SearchScreen(navigateToProduct = {
+          navController.navigate(Screens.Products.name)
+
+        },
+          viewModel = viewModel)
       }
       composable(route = Screens.Options.name) {
         OptionsScreen()

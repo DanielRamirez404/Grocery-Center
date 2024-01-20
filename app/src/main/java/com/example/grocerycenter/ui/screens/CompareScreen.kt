@@ -81,6 +81,7 @@ fun CompareScreen(
             product = it,
             viewModel = viewModel,
             navigateToProduct = navigateToProduct,
+            hasDeleteButton = true,
             modifier = modifier
           )
         }

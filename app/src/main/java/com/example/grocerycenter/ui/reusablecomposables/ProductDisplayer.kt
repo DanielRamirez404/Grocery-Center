@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.grocerycenter.R
 import com.example.grocerycenter.data.MarketToDrawable
+import com.example.grocerycenter.data.MarketToString
 import com.example.grocerycenter.data.Product
 import com.example.grocerycenter.data.Supermarket
 import com.example.grocerycenter.data.productList
@@ -177,4 +178,16 @@ fun getRandomOffersFrom(supermarket: Supermarket) : List<Product> {
   val list = copiedList.toMutableList()
   list.removeIf { !it.hasOffer || it.supermarket != supermarket }
   return list.asSequence().shuffled().take(listSize).toList()
+}
+
+fun getListFromText(text: String) : List<Product> {
+  var searchText = text.lowercase()
+  val copiedList = productList.map{ it.copy() }
+  val list = copiedList.toMutableList()
+  list.removeIf {
+    !(it.name + it.brand + it.extraInfo + MarketToString(it.supermarket))
+      .lowercase()
+      .contains(searchText)
+  }
+  return list.asSequence().shuffled().take(list.size).toList()
 }
