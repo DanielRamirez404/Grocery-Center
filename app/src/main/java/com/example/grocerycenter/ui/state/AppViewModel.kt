@@ -28,6 +28,12 @@ class AppViewModel : ViewModel() {
     }
   }
 
+  fun changeSearchText(text: String) {
+    _uiState.update { currentState ->
+      currentState.copy(searchText = text)
+    }
+  }
+
   fun searchProduct(text: String) {
     searchList.clear()
     searchList.addAll(getListFromText(text))

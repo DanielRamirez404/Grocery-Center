@@ -26,6 +26,7 @@ import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposableInferredTarget
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,6 +35,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -50,11 +53,12 @@ fun SearchScreen(
   navigateToProduct: () -> Unit,
   modifier: Modifier = Modifier
 ) {
-  var text by remember { mutableStateOf("") }
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = modifier
   ) {
+    val uiState by viewModel.uiState.collectAsState()
+    val text = uiState.searchText
     Row(
       verticalAlignment = Alignment.CenterVertically,
       horizontalArrangement = Arrangement.Center,
@@ -63,7 +67,7 @@ fun SearchScreen(
     ) {
       OutlinedTextField(
         value = text,
-        onValueChange = { text = it },
+        onValueChange = { viewModel.changeSearchText(it) },
         label = { Text(
           text = "Search",
           color = MaterialTheme.colorScheme.outline
@@ -81,6 +85,9 @@ fun SearchScreen(
         colors = TextFieldDefaults.outlinedTextFieldColors(
           focusedBorderColor = Color.LightGray,
           unfocusedBorderColor = Color.LightGray
+        ),
+        textStyle = TextStyle(
+          color = MaterialTheme.colorScheme.outline
         ),
         modifier = modifier
           .padding(start = Padding.small)

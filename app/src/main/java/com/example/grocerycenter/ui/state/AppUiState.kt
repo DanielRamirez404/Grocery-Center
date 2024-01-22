@@ -9,6 +9,7 @@ import com.example.grocerycenter.ui.reusablecomposables.getRandomOffersFrom
 import com.example.grocerycenter.ui.reusablecomposables.getRandomProductList
 
 data class AppUiState(
+  val searchText: String = "",
   val popularProducts: List<Product> = getRandomProductList(),
   val popularMap: Map<Supermarket, List<Product>> = mapOf(
     Supermarket.MasPorMenos to getProductListFrom(Supermarket.MasPorMenos),
