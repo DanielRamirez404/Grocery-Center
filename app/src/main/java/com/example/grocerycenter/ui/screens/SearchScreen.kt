@@ -64,6 +64,7 @@ fun SearchScreen(
       horizontalArrangement = Arrangement.Center,
       modifier = modifier
         .fillMaxWidth()
+        .padding(top = Padding.small)
     ) {
       OutlinedTextField(
         value = text,

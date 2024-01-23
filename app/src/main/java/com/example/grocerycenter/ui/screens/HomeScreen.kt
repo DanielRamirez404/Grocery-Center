@@ -52,6 +52,7 @@ fun HomeScreen(
       title = "Popular Products",
       list = uiState.popularProducts,
       modifier = modifier
+        .padding(top = Padding.small)
     )
     ListedSection(
       viewModel = viewModel,

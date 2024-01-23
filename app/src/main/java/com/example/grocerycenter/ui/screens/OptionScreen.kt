@@ -76,7 +76,6 @@ fun OptionsScreen() {
   Column(
 
   ) {
-    Divider(color = Color.DarkGray.copy(alpha = 0.25f), thickness = 1.dp)
     Option(
       title = "Language",
       subtitle = "English",

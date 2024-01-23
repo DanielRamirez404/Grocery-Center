@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -20,7 +21,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -184,10 +188,19 @@ fun BottomBarItem(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(name: String, modifier: Modifier = Modifier) {
-  CenterAlignedTopAppBar(
-    modifier = modifier,
-    title = {
-      Text(text = "Grocery Center")
-    }
-  )
+  Column() {
+    CenterAlignedTopAppBar(
+      modifier = modifier,
+      title = {
+        Text(
+          text = "Grocery Center",
+          style = MaterialTheme.typography.titleLarge,
+          fontWeight = FontWeight.Bold,
+          color = Color.Black.copy(alpha = 0.85f),
+          modifier = modifier
+        )
+      }
+    )
+    Divider(color = Color.DarkGray.copy(alpha = 0.25f), thickness = 1.dp)
+  }
 }

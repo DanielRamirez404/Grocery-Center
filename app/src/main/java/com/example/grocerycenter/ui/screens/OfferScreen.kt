@@ -1,6 +1,7 @@
 package com.example.grocerycenter.ui.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -13,6 +14,7 @@ import com.example.grocerycenter.ui.reusablecomposables.ListedSection
 import com.example.grocerycenter.ui.reusablecomposables.getRandomOffers
 import com.example.grocerycenter.ui.reusablecomposables.getRandomOffersFrom
 import com.example.grocerycenter.ui.state.AppViewModel
+import com.example.grocerycenter.ui.theme.Padding
 
 @Composable
 fun OffersScreen(
@@ -31,6 +33,7 @@ fun OffersScreen(
       title = "Special Offers",
       list = uiState.popularOffers,
       modifier = modifier
+        .padding(top = Padding.small)
     )
     ListedSection(
       viewModel = viewModel,
