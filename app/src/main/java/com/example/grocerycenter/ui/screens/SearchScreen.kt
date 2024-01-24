@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -124,6 +125,32 @@ fun SearchScreen(
             modifier = modifier
           )
         }
+      }
+    } else {
+      Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
+          .fillMaxSize()
+      ) {
+        Text(
+          text = "There are no items that match.",
+          style = MaterialTheme.typography.titleLarge,
+          color = MaterialTheme.colorScheme.outline,
+          modifier = modifier
+        )
+        Text(
+          text = "the search query at present.",
+          style = MaterialTheme.typography.titleLarge,
+          color = MaterialTheme.colorScheme.outline,
+          modifier = modifier
+        )
+        Text(
+          text = "Please, try again.",
+          style = MaterialTheme.typography.titleLarge,
+          color = MaterialTheme.colorScheme.outline,
+          modifier = modifier
+        )
       }
     }
   }

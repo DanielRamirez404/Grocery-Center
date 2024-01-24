@@ -125,7 +125,12 @@ fun LongProductDisplayer(
           shape = RoundedCornerShape(35),
           contentPadding = PaddingValues(0.dp),
           onClick = {
-            if (hasDeleteButton) viewModel.removeProductToCompare(product) else viewModel.addProductToCompare(product)
+            if (hasDeleteButton) {
+              viewModel.removeProductToCompare(product)
+            }
+            else if (!viewModel.compareList.contains(product)) {
+              viewModel.addProductToCompare(product)
+            }
           },
           modifier = modifier
             .padding(Padding.none, Padding.large, Padding.large, Padding.none)

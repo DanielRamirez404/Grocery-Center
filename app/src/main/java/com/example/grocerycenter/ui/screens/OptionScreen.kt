@@ -38,16 +38,13 @@ fun Option(
       .padding(start = Padding.medium + Padding.small, top = Padding.medium, bottom = Padding.medium)
       .fillMaxWidth()
   ) {
-    Row(
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = modifier
-    ) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
       if (iconId != null) {
         Icon(
           painter = painterResource(id = iconId),
           contentDescription = null,
           tint = Color.DarkGray.copy(alpha = 0.5f),
-          modifier = modifier
+          modifier = Modifier
             .padding(end = Padding.small)
             .height(20.dp)
         )
@@ -57,7 +54,6 @@ fun Option(
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.SemiBold,
         color = Color.DarkGray.copy(alpha = 0.5f),
-        modifier = modifier
       )
     }
     Text(
@@ -65,7 +61,6 @@ fun Option(
       style = MaterialTheme.typography.bodySmall,
       fontWeight = FontWeight.SemiBold,
       color = Color.DarkGray.copy(alpha = 0.3f),
-      modifier = modifier
     )
   }
   Divider(color = Color.DarkGray.copy(alpha = 0.25f), thickness = 1.dp)
